@@ -7,7 +7,7 @@
 # Download this file to your jetson with the command
 # "wget https://raw.githubusercontent.com/streicherlouw/fastai2_jetson_nano/master/install_fastai2_jetpack_4_4.sh -O install_fastai2_jetpack_4_4.sh"
 # then run "chmod a+x install_fastai2_jetpack_4_4.sh"
-# and start the install with "sudo install_fastai2_jetpack_4_4.sh"
+# and start the install with "sudo ./install_fastai2_jetpack_4_4.sh"
 # Starting the script with sudo is iportant as it will let you type
 # the password once and let it run untill completed.
 # On a fast SD card, this process takes around 12-16 hours
