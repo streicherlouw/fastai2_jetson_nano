@@ -187,4 +187,4 @@ chmod a+x start_fastai_jupyter.sh
 echo "As the last step, please choose a jupyter notebook password"
 jupyter notebook password
 
-echo "Now restart the jetson nano and run either start_fastai_tmux.sh or start_fastai_jupyter.sh and connect with your browser to http://(your IP):8888/"
+echo "Now restart the jetson nano and run either ./start_fastai_tmux.sh or ./start_fastai_jupyter.sh and connect with your browser to http://(your IP):8888/"
