@@ -59,6 +59,7 @@ echo $PW | sudo -k --stdin apt-get -y upgrade
 # Create a virtual environment and activate it
 echo $PW | sudo -k --stdin apt install -y python3-venv
 echo $PW | sudo -k --stdin apt install -y python3-pip
+cd ~/
 python3 -m venv ~/python-envs/fastai
 source ~/python-envs/fastai/bin/activate
 pip3 install wheel
