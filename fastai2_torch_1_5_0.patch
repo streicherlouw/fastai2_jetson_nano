@@ -1,0 +1,19 @@
+diff -Naur fastai2/fastai2/vision/augment.py fastai2_patched/fastai2/vision/augment.py
+--- fastai2/fastai2/vision/augment.py	2020-05-06 11:22:35.000000000 +1000
++++ fastai2_patched/fastai2/vision/augment.py	2020-05-06 11:28:57.000000000 +1000
+@@ -286,7 +286,7 @@
+         d = min(x.shape[-2]/coords.shape[-2], x.shape[-1]/coords.shape[-1])/2
+         # If we're resizing up by >200%, and we're zooming less than that, interpolate first
+         if d>1 and d>z:
+-            x = F.interpolate(x, scale_factor=1/d, mode='area')
++            x = F.interpolate(x, scale_factor=1/d, mode='area',recompute_scale_factor=True)
+     return F.grid_sample(x, coords, mode=mode, padding_mode=padding_mode, align_corners=align_corners)
+ 
+ # Cell
+@@ -779,4 +779,4 @@
+         res.append(Brightness(max_lighting=max_lighting, p=p_lighting, batch=batch))
+         res.append(Contrast(max_lighting=max_lighting, p=p_lighting, batch=batch))
+     if min_scale!=1.: xtra_tfms = RandomResizedCropGPU(size, min_scale=min_scale, ratio=(1,1)) + L(xtra_tfms)
+-    return setup_aug_tfms(res + L(xtra_tfms))
+\ No newline at end of file
++    return setup_aug_tfms(res + L(xtra_tfms))
