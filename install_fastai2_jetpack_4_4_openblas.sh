@@ -40,11 +40,11 @@
 # To start the installation, we again make the script executable and then run it as
 # follows:
 # "chmod +x install_fastai2_jetpack_4_4.sh"
-# "sudo ./install_fastai2_jetpack_4_4.sh"
+# "./install_fastai2_jetpack_4_4.sh"
 
-# As this script will take many hours to execute, your sudo priveledges will
+# As this script will take many hours to execute, your sudo credentials will
 # time out before the later steps that require sudo priviledges. This first
-# bit of code will cache your sudo password to reuse later
+# bit of code will cache your sudo password
 
 echo "Please enter the sudo password"
 read -sp 'Password: ' PW
@@ -64,12 +64,12 @@ source ~/python-envs/fastai/bin/activate
 pip3 install wheel
 
 # Install MAGMA from source
-# Since fastai requires pytorch to be compiled MAGMA, this needs to be intalled first
+# Since fastai requires pytorch to be compiled MAGMA, MAGMA needs to be installed first
 # The authors of MAGMA does not offer binary builds, so it needs to be compiled from source
 now=`date`
 echo "Start installation of MAGMA at: $now"
-# The default jetpack 4.4 installation does not link libblas.so.3 and liblapack.so.3 to libblas.so and liblapack.so
-# to make sure everything links to the same blas libraries, this section makes those links
+# The default jetpack 4.4 installation comes with stock blas and lapack libraries
+# this section replaces those with openblas which is faster
 echo $PW | sudo -k --stdin apt remove -y libblas3
 echo $PW | sudo -k --stdin apt remove -y liblapack3
 echo $PW | sudo -k --stdin sudo apt install -y libopenblas-dev
