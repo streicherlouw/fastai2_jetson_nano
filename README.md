@@ -21,7 +21,7 @@ Next, execute the script to enable swap space and disable the GUI.
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ./fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
-The nano should then reboot and present you with a text terminal to log into.
+The nano should now reboot and present you with a text terminal to log into.
 
 # Step 3: Install dependencies and compile
 For the next part, you will either need to log into the nano by ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the session will end and the installation will stop midway.
@@ -30,7 +30,7 @@ Once logged in from a reliable connection, start the installation by typing:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
-If you are familiar with nohup, this repository also includes an alternate install script that starts the build in the background so that an interrupted terminal session would not stop the build. Using this method has the added benifit of preserving the build log in a file so that it may be checked later for errors. To start the build in the backround instead, use the command:
+If you are familiar with nohup, this repository also includes an alternate install script that starts the build in the background so that an interrupted terminal session would not stop the build. Using this method has the added benifit of preserving the build log in a file so that it may be checked later for errors. To start the build in the background instead, use the command:
 ```
 ./fastai2_jetson_nano/step3_start_background_build.sh
 ```
