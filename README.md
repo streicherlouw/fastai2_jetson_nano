@@ -18,7 +18,8 @@ git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
 Next, execute the script to enable swap space and disable the GUI.
 ```
-sudo sh fastai2_jetson_nano/step2_swap_and_textmode.sh
+chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
+./fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
 The nano should then reboot and present you with a text terminal to log into.
 
