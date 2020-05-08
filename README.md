@@ -9,7 +9,7 @@ With a reasonably fast SD card, following the process below should take about 12
 # Step 1: Flash Jetpack 4.4
 Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the initial setup of username and password using a screen and keyboard connected directly to the jetson. My jetson did not work reliably with a 4K screen. Use an HD screen or TV if you have similar problems.
 
-# Step 2: Download the installation scripts, setup swap space and disable the GUI
+# Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To bridge the gap we can add some swap space that will use the SD card as additional memory. Swapping to disk is very slow though, so to free to as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode. You can enable the GUI again later is you wish, but as you will likely access fastai through jupyter notebook, the memory is better spent on space for you deep learning data. 
 
 Start by opening a text terminal and download this the files you will need for the installation process from this github with the command:
