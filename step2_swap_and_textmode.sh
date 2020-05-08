@@ -15,5 +15,5 @@ chmod +x ~/fastai2_jetson_nano/step3_install_fastai2.sh
 chmod +x ~/fastai2_jetson_nano/step3_start_background_build.sh
 
 echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step3_install_fastai2.sh"
-read -n 1 -t 5 a
+read -t 5 a
 sudo reboot now
