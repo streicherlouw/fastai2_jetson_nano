@@ -22,7 +22,7 @@ sudo sh fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
 The nano should then reboot and present you with a text terminal to log into.
 
-# Step 3: Install dependencies and compile Pytorch and Fastai
+# Step 3: Install dependencies and compile
 For the next part, you will either need to log into the nano by ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the  session will end and the installation will stop midway.
 
 Once logged in from a reliable connection, start the installation by typing: 
