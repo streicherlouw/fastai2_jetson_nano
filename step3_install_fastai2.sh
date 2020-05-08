@@ -71,7 +71,7 @@ wget http://icl.utk.edu/projectsfiles/magma/downloads/magma-2.5.3.tar.gz
 tar -xf magma-2.5.3.tar.gz
 # Magma needs a make.inc file to tell it which Nvidia architectures to compile for and where to find the blas libraries
 # This file is based on the openblas example in MAGMA, with mior tweaks for the jetson nano architecture (Maxwell) and openblas library location
-cp fastai2_jetson_nano/make.inc.jetson ~/magma-2.5.3/make.inc
+cp ~/fastai2_jetson_nano/make.inc.jetson ~/magma-2.5.3/make.inc
 cd magma-2.5.3
 export OPENBLASDIR=/usr/lib/aarch64-linux-gnu
 export CUDADIR=/usr/local/cuda
