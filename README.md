@@ -21,7 +21,8 @@ The nano should then reboot and present you with a text terminal to log into.
 # Step 3: Install dependencies and compile Pytorch and FastAI
 For the next part, you will either need to log into the nano by ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time the script is running. If your terminal quits (for example because the computer you are connecting from goes to sleep) the terminal session will end and the installation will stop midway.
 
-To start the installation, type 
+Once logged in from a reliable connection, start the installation by typing: 
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
+With a resonably fast SD card, this script should run for 12-14 hours. 
