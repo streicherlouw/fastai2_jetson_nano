@@ -5,14 +5,14 @@ The Nvidia jetson nano is a small single board computer pairing a quad-core ARMv
 # Step 1: Flash Jetpack 4.4
 Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the intitial setup of username and password using a screen and keyboard connected directly to the jetson. My jetson did not work reliably with a 4K screen. Use an HD screen or TV if you have similar problems.
 
-Open a terminal and download the files you will need for this process from this github with the command:
+# Step 2: Download the installation scripts, setup swap space and disable the GUI
+Compiling pytorch uses more memory than the 4GB jetson nano has available. To bridge the gap we can add some swap space that will use the SD card as additional memory. Swapping to disk is very slow though, so to free to as much memory as we can we also need to switch off the Graphical User Interface by tellign the nano to stop booting when it reaches multi-user text mode. You can enable the GUI again later is you wish, but as you will liekly access fastai through jupyter notebook, the memory is better spent on space for you deep learning data. 
+
+Start by opening a text terminal and download this the files you will need for the installation process from this github with the command:
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-# Step 2: Setup swap space and disable the GUI
-Compiling pytorch uses more memory than the 4GB jetson nano has available. To bridge the gap we can add some swap space that will use the SD card as additional memory. Swapping to disk is very slow though, so to free to as much memory as we can we also need to switch off the Graphical User Interface by tellign the nano to stop booting when it reaches runlevel 3. Both of these functions are performed by the script step2_setup_swap_and_textmode.sh. 
-
-To run this script, we first needs to mark it as executable, and then run it and reboot as follows:
+Next, execute the scitp to enable swap space and disable the GUI.
 ```
 sudo sh fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
