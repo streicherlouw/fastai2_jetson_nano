@@ -2,7 +2,7 @@
 
 The Nvidia jetson nano is a small single board computer pairing a quad-core ARMv8 processor with a 128 core Nvidia Maxwell GPU. Fastai V2 is the latest development version of the fastai deep learning library, that adds function call-backs and GPU accelerated image transforms to fastai V1.
 
-Fastai V2 presents some unique installation challenges for users of the Nvidia Jetson Nano. The GPU acceleration used by fastai V2 require pytorch to have been compiled with MAGMA support, and the default pytorch wheels provided by Nvidia are not built with MAGMA. Dusty_nv from Nvidia explains the reasoning behind this choice [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048/201) . This means that to use fastai V2 on the jetson nano, both MAGMA and pytorch needs to be rebuilt from source on the nano.
+Fastai V2 presents some unique installation challenges for users of the Nvidia Jetson Nano. The GPU acceleration used by fastai V2 require pytorch to have been compiled with MAGMA support, and the default pytorch wheels provided by Nvidia are not built with MAGMA. Dusty_nv from Nvidia explains the reasoning behind this choice [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048/201). This means that to use fastai V2 on the jetson nano, both MAGMA and pytorch needs to be rebuilt from source on the nano.
 
 With a reasonably fast SD card, following the process should take about 12-14 hours. The build process is fully scripted, so it can be run unattended overnight. This work builds on the installation instructions for fastai V1 for the jetson nano written by [Bharat Kunwar](https://github.com/brtknr/fastai-jetson-nano).
 
@@ -23,7 +23,7 @@ sudo sh fastai2_jetson_nano/step2_swap_and_textmode.sh
 The nano should then reboot and present you with a text terminal to log into.
 
 # Step 3: Install dependencies and compile
-For the next part, you will either need to log into the nano by ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the  session will end and the installation will stop midway.
+For the next part, you will either need to log into the nano by ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the session will end and the installation will stop midway.
 
 Once logged in from a reliable connection, start the installation by typing: 
 ```
