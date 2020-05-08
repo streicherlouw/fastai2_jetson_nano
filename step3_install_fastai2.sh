@@ -43,8 +43,9 @@ now=`date`
 echo "Start Installation of fastai2 on jetson nano at: $now"
 
 # Update the nano's software
-echo $PW | sudo -k --stdin apt-get -y update
-echo $PW | sudo -k --stdin apt-get -y upgrade
+echo $PW | sudo -k --stdin apt -y update
+echo $PW | sudo -k --stdin apt -y upgrade
+echo $PW | sudo -k --stdin apt -y autoremove
 
 # Create a virtual environment and activate it
 echo $PW | sudo -k --stdin apt install -y python3-venv
