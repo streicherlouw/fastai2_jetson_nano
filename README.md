@@ -16,8 +16,7 @@ Compiling pytorch uses more memory than the 4GB jetson nano has available. To br
 
 To run this script, we first needs to mark it as executable, and then run it and reboot as follows:
 ```
-chmod +x ~/fastai2_jetson_nano/tep2_setup_swap_and_textmode.sh
-sudo ./fastai2_jetson_nano/tep2_setup_swap_and_textmode.sh
+sudo sh fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
 The nano should then reboot and present you with a text terminal to log into.
 
