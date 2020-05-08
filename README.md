@@ -34,7 +34,7 @@ If you are familiar with nohup, this repository also includes an alternate insta
 ./fastai2_jetson_nano/step3_start_background_build.sh
 ```
 # Step 4: Batch responsibly
-The jetson nano has only 4GB of ram shared between the operating system and the GPU. When training with large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set batch size to 16 or 32 whenever you build the dataloader, as follows:
+The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set batch size to 16 or 32 when you call the dataloader, for example:
 ```
-dls = pets.dataloaders(path/"images",**bs=32**)
+dls = pets.dataloaders(path/"images",bs=32)
 ```
