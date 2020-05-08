@@ -11,8 +11,8 @@ echo "/swapfile swap swap defaults 0 0" | sudo tee --append /etc/fstab > /dev/nu
 sudo systemctl enable multi-user.target
 sudo systemctl set-default multi-user.target
 
-chmod +x ~/fastai2_jetson_nano/install_fastai2.sh
+chmod +x ~/fastai2_jetson_nano/step3_install_fastai2.sh
 
-echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step2_install_fastai2.sh"
+echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step3_install_fastai2.sh"
 read -n 1 -t 5 a
 sudo reboot now
