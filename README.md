@@ -2,8 +2,6 @@
 
 The Nvidia jetson nano is a small single board computer pairing a quad-core ARMv8 processor with an 128 core Nvidia Maxwell GPU. Fastai V2 is the latest development version of the fastai deep learning library, that adds function callbacks and GPU accelerated image transforms to fastai V1.
 
-Installing FastAI V2 on the Jetson Nano
-
 # Step 1: Flash Jetpack 4.4
 Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the intitial setup of username and password using a screen and keyboard connected directly to the jetson. My jetson did not work reliably with a 4K screen. Use an HD screen or TV if you have similar problems.
 
