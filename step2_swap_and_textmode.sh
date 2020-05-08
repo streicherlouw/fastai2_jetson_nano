@@ -12,7 +12,7 @@ sudo systemctl enable multi-user.target
 sudo systemctl set-default multi-user.target
 
 chmod +x ~/fastai2_jetson_nano/step3_install_fastai2.sh
-chmod +x ~/fastai2_jetson_nano/step3_start_build.sh
+chmod +x ~/fastai2_jetson_nano/step3_background_build.sh
 
 echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step3_install_fastai2.sh"
 read -n 1 -t 5 a
