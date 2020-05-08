@@ -36,8 +36,15 @@
 # will end and the installation will stop midway.
 # To start the installation, type "./fastai2_jetson_nano/step3_install_fastai2.sh"
 
-echo "Please enter the sudo password" # As this script will take many hours to execute, the script needs to chache your sudo credentials
-read -sp 'Password: ' PW
+# As this script will take many hours to execute, the script first needs to
+# cache your sudo credentials if they are not supplied on the command line
+
+if [ "$1" != "" ]; then
+  PW=$1
+else
+  echo "Please enter the sudo password"
+  read -sp 'Password: ' PW
+fi
 
 now=`date`
 echo "Start Installation of fastai2 on jetson nano at: $now"
