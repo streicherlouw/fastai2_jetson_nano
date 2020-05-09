@@ -38,7 +38,7 @@ If you are familiar with nohup, this repository also includes an alternate insta
 ```
 If you want to re-enable the GUI at any time after installation, you can set the runlevel back to graphical mode with:
 ```
-./fastai2_jetson_nano/step3_enable_gui.sh
+./fastai2_jetson_nano/enable_gui.sh
 ```
 # Step 4: Batch responsibly
 The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 16 or 32 when you call the dataloader as follows:
