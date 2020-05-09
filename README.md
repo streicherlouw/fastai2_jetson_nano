@@ -2,6 +2,8 @@
 
 The Nvidia jetson nano is a small single board computer pairing a quad-core ARMv8 processor with a 128 core Nvidia Maxwell GPU. Fastai V2 is the latest development version of the fastai deep learning library, that adds function call-backs and GPU accelerated image transforms to fastai V1.
 
+<img src="https://devblogs.nvidia.com/wp-content/uploads/2019/03/Jetson-Nano_3QTR-Front_Left-1920px-1024x776.png" width="300">
+
 Fastai V2 presents some unique installation challenges for users of the Nvidia Jetson Nano. The GPU acceleration used by fastai V2 require pytorch to have been compiled with MAGMA support, and the default pytorch wheels provided by Nvidia are not built with MAGMA. Dusty_nv from Nvidia explains the reasoning behind this choice [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048/201). This means that to use fastai V2 on the jetson nano, both MAGMA and pytorch needs to be rebuilt from source on the nano.
 
 With a reasonably fast SD card, following the process should take about 12-14 hours. The build process is fully scripted, so it can be run unattended overnight. This work builds on the installation instructions for fastai V1 for the jetson nano written by [Bharat Kunwar](https://github.com/brtknr/fastai-jetson-nano).
@@ -12,7 +14,7 @@ Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/e
 # Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To bridge the gap we can add some swap space that will use the SD card as additional memory. Swapping to disk is very slow though, so to free to as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode. You can enable the GUI again later is you wish, but as you will likely access fastai through jupyter notebook, the memory is better spent on space for you deep learning data. 
 
-Start by opening a text terminal and download this the files you will need for the installation process from this github with the command:
+Start by opening a text terminal and download  the files you will need for the installation process from this github with the command:
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
