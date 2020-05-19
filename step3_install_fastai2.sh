@@ -16,6 +16,13 @@ else
   read -sp 'Password: ' PW
 fi
 
+if [ "$2" != "" ]; then
+  JPW=$2
+else
+  echo "Please enter your desired jupyter notebook password"
+  read -sp 'Password: ' JPW
+fi
+
 now=`date`
 echo "Start Installation of fastai2 on jetson nano at: $now"
 
@@ -194,8 +201,7 @@ echo $PW | sudo -k --stdin -H pip3 install -U jetson-stats
 cp ~/fastai2_jetson_nano/start_fastai_jupyter_tmux.sh start_fastai_jupyter_tmux.sh
 chmod a+x start_fastai_jupyter_tmux.sh
 echo $'set -g terminal-overrides \'xterm*:smcup@:rmcup@\'' >> .tmux.conf # sets up same mouse scolling in tmux
-
-echo "As the last step, please choose a jupyter notebook password"
-jupyter notebook password
+JPWH=$(python3 -c "from notebook.auth import passwd; print(passwd('$JPW'))")
+echo "{\"NotebookApp\":{\"password\":\"$JPWH\"}}" >> ~/.jupyter/jupyter_notebook_config.json
 
 echo "Now restart the jetson nano, run either ./start_fastai_jupyter_tmux.sh or ./start_fastai_jupyter.sh and connect with your browser to http://(your IP):8888/"
