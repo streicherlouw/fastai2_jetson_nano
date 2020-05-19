@@ -13,6 +13,7 @@ sudo systemctl set-default multi-user.target
 
 chmod +x ~/fastai2_jetson_nano/step3_install_fastai2.sh
 chmod +x ~/fastai2_jetson_nano/step3_install_fastai2_background.sh
+chmod +x ~/fastai2_jetson_nano/step4_enable_GUI.sh
 
 echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step3_install_fastai2.sh"
 read -t 5 a
