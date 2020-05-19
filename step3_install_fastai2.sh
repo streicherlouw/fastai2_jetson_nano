@@ -20,6 +20,7 @@ fi
 if [ "$2" != "" ]; then
   JPW=$2
 else
+  echo
   echo "Please enter your desired jupyter notebook password"
   read -sp 'Password: ' JPW
 fi
