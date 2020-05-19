@@ -6,13 +6,13 @@ The Nvidia jetson nano is a small single board computer pairing a quad-core ARMv
 
 Fastai V2 presents some unique installation challenges for users of the Nvidia Jetson Nano. The GPU acceleration used by fastai V2 require pytorch to have been compiled with MAGMA support, and the default pytorch wheels provided by Nvidia are not built with MAGMA. Dusty_nv from Nvidia explains the reasoning behind this choice [here](https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048/201). This means that to use fastai V2 on the jetson nano, both MAGMA and pytorch needs to be rebuilt from source on the nano.
 
-With a reasonably fast SD card, following the process below should take about 12-14 hours. The build process is fully scripted, so it can be run unattended overnight. As compiling pytorch will utilise the nano's ARM cores to their limit, the nano will generate a significant amount of heat during the installation process. If you have a fan for your nano, you may want to fit it before starting the installation process, even though this is not technically neccesarry according to the [testing performed by cnx-software](https://www.cnx-software.com/2019/12/09/testing-nvidia-jetson-nano-developer-kit-with-and-without-fan/).  This work builds on the installation instructions for fastai V1 for the jetson nano written by [Bharat Kunwar](https://github.com/brtknr/fastai-jetson-nano). 
+With a reasonably fast SD card, following the process below should take about 12-14 hours. The build process is fully scripted, so it can be run unattended overnight. As compiling pytorch will utilise the nano's ARM cores to their limit, the nano will generate a significant amount of heat during the installation process. If you have a fan for your nano, you may want to fit it before starting the installation process, even though this is not technically necessary according to the [testing performed by cnx-software](https://www.cnx-software.com/2019/12/09/testing-nvidia-jetson-nano-developer-kit-with-and-without-fan/).  This work builds on the installation instructions for fastai V1 for the jetson nano written by [Bharat Kunwar](https://github.com/brtknr/fastai-jetson-nano). 
 
 # Step 1: Flash Jetpack 4.4
 Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the initial setup of username and password using a screen and keyboard connected directly to the jetson. For initial configuration, an HD screen is known to work better than a 4K screen.
 
 # Step 2: Setup swap space and disable the GUI
-Compiling pytorch uses more memory than the 4GB jetson nano has available. To make compilation possible, we need to add some swap space that will use a large file on the SD card as a form of temporary RAM. Swapping to disk is very slow though, so to free as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode during startup. You can re-enable the GUI again later if you wish (using the script step4_enable_GUI.sh), but as you will likely access fastai through jupyter notebook from another computer, it may be advantageous to simply leave the GUI switched off, making the additional RAM available for your deep learning data instead. 
+Compiling pytorch uses more memory than the 4GB jetson nano has available. To make compilation possible, we need to add some swap space that will use a large file on the SD card as a form of temporary RAM. Swapping to disk is very slow though, so to free as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode during start-up. You can re-enable the GUI again later if you wish (using the script step4_enable_GUI.sh), but as you will likely access fastai through jupyter notebook from another computer, it may be advantageous to simply leave the GUI switched off, making the additional RAM available for your deep learning data instead. 
 
 To setup the swap file and temporarily disable the GUI, start by opening a text terminal and download the files you will need for the installation process from this github with the command:
 ```
@@ -42,17 +42,19 @@ source ~/python-envs/fastai/bin/activate
 jupyter notebook password
 ```
 # Step 4: Start jupyter notebook
-This installation script creates a virtual environment called "fastai" for pytorch and fastai using the python's venv function. This means that you will need to activate the virtual environment before using jupyter notebook or python. If you are not using the startup sctipts below, you can manually activate the "fastai" virtual environment with the following command:
+This installation script creates a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. If you are not using the start-up scripts further below, you can manually activate the "fastai" virtual environment with the following command:
 ```
 source ~/python-envs/fastai/bin/activate
 ```
-The start-up scripts start_fastai_jupyter.sh and start_fastai_jupyter_tmux.sh will automatically activate the virtual environments before starting jupyter notebook with the jetson nano's IP address.
+The installation also places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
 
-If you start jypyter notebook in the terminal you are logged into, it will operate for as long as the terminal session is running, but exit the moment your terminal session closes. To start jypyter notebook in your current terminal session type:
+To start the jypyter notebook server in the terminal you are logged into type:
 ```
 ./start_fastai_jupyter.sh
 ```
-If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 for jtop (an attractive resource manager for the jetson nano, Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. After starting tmux with the command below, you can press Control-b followed by 0,2 or 3 to switch between jtop, the terminal and jupyter's output. Control-b followed by x closes a session.
+The script above will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes. If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. 
+
+The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 for jtop (an attractive resource manager for the jetson nano, Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. After starting tmux with the command below, you can press Control-b followed by 0,2 or 3 to switch between jtop, the terminal and jupyter's output. Control-b followed by x closes a session.
 ```
 ./start_fastai_jupyter_tmux.sh
 ```
