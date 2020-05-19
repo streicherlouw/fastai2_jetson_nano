@@ -1,7 +1,7 @@
 #!/bin/bash
-# FasiAI2 on Jetpack 4.4
+# Install FastAI2 on Jetpack 4.4. 
+# Step 2: Prepare swap file and switch off GUI to maximise available RAM 
 
-#!/bin/bash
 sudo fallocate -l 8G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
