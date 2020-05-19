@@ -34,7 +34,7 @@ Once logged in from a reliable connection, start the installation by typing:
 ```
 If you are familiar with nohup, this repository also includes an alternate install script that starts the build in the background so that an interrupted terminal session would not stop the build. Using this method has the added benefit of preserving the build log in a file so that it may be checked later for errors. To start the build in the background instead, use the command:
 ```
-./fastai2_jetson_nano/step3_start_background_build.sh
+./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
 If you use the background build process, you will need to set the jupyter password manually after installation using the commands:
 ```
@@ -54,7 +54,7 @@ If you start jypyter notebook in the terminal you are logged into, it will opera
 ```
 If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal session: Session 0 for jtop (an attractive resource manager for the jetson nano, Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. After starting tmux with the command below, you can press Control-b followed by 0,2 or 3 to switch between jtop, the terminal and jupyter's output. Command-b followed by x closes a session.
 ```
-./start_fastai_tmux.sh
+./start_fastai_jupyter_tmux.sh
 ```
 # Step 5: Batch responsibly
 The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 16 or 32 when you call the dataloader as follows:
