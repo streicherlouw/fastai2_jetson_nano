@@ -12,7 +12,7 @@
 if [ "$1" != "" ]; then
   PW=$1
 else
-  echo "These prompts will only ask once, please take care to type the passwords correctly"
+  echo "These prompts will only ask for each password once, please take care when typing"
   echo "Please enter the sudo password"
   read -sp 'Password: ' PW
   echo
