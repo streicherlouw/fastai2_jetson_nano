@@ -55,6 +55,10 @@ If you are not using the start-up scripts above, for example if you want to run 
 ```
 source ~/python-envs/fastai/bin/activate
 ```
+If you do not intend to work with large datasets in fastai, you may also also re-enable the graphical user interface with the command:
+```
+./fastai2_jetson_nano/step4_enable_GUI.sh
+```
 # Step 5: Batch responsibly
 The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 16 or 32 when you call the dataloader as follows:
 ```
