@@ -32,7 +32,7 @@ Once logged in from a reliable connection, start the installation by typing:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
-If you are familiar with nohup, this repository also includes an alternate install script that starts the process in the background so that an interrupted terminal session would not stop the build. Using this method also has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, use the following command instead of the one above:
+If you are familiar with nohup, this repository also includes an alternate install script that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this method also has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, use the following command instead of the one above:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
