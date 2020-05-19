@@ -15,14 +15,15 @@ else
   echo "These prompts will only ask once, please take care to type the passwords correctly"
   echo "Please enter the sudo password"
   read -sp 'Password: ' PW
+  echo
 fi
 
 if [ "$2" != "" ]; then
   JPW=$2
 else
-  echo
   echo "Please enter your desired jupyter notebook password"
   read -sp 'Password: ' JPW
+  echo
 fi
 
 now=`date`
