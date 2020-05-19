@@ -32,31 +32,28 @@ Once logged in from a reliable connection, start the installation by typing:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
-If you are familiar with nohup, this repository also includes an alternate install script that starts the build in the background so that an interrupted terminal session would not stop the build. Using this method has the added benefit of preserving the build log in a file so that it may be checked for errors later. To start the build in the background instead, use the command:
+If you are familiar with nohup, this repository also includes an alternate install script that starts the process in the background so that an interrupted terminal session would not stop the build. Using this method also has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, use the following command instead of the one above:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
-If you use the background build process, you will need to set the jupyter password manually after installation using the commands:
-```
-source ~/python-envs/fastai/bin/activate
-jupyter notebook password
-```
 # Step 4: Start jupyter notebook
-This installation script creates a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. If you are not using the start-up scripts further below, you can manually activate the "fastai" virtual environment with the following command:
-```
-source ~/python-envs/fastai/bin/activate
-```
-The installation also places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
+This installation script creates a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. 
 
-To start the jypyter notebook server in the terminal you are logged into type:
+For convenience, the installation process places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
+
+To start the jypyter notebook server in the terminal that you are logged into type the command below. This script will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes:
 ```
 ./start_fastai_jupyter.sh
 ```
-The script above will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes. If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. 
+If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 for jtop (an attractive resource manager for the jetson nano, Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. 
 
-The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 for jtop (an attractive resource manager for the jetson nano, Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. After starting tmux with the command below, you can press Control-b followed by 0,2 or 3 to switch between jtop, the terminal and jupyter's output. Control-b followed by x closes a session.
+After starting tmux with the command below, you can press Control-b followed by 0,2 or 3 to switch between jtop, the terminal and jupyter's output. Control-b followed by x closes a session.
 ```
 ./start_fastai_jupyter_tmux.sh
+```
+If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, you can manually activate the "fastai" virtual environment with the following command:
+```
+source ~/python-envs/fastai/bin/activate
 ```
 # Step 5: Batch responsibly
 The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 16 or 32 when you call the dataloader as follows:
