@@ -9,7 +9,7 @@ Fastai V2 presents some unique installation challenges for users of the Nvidia J
 With a reasonably fast SD card, following the process should take about 12-14 hours. The build process is fully scripted, so it can be run unattended overnight. This work builds on the installation instructions for fastai V1 for the jetson nano written by [Bharat Kunwar](https://github.com/brtknr/fastai-jetson-nano).
 
 # Step 1: Flash Jetpack 4.4
-Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the initial setup of username and password using a screen and keyboard connected directly to the jetson. My jetson did not work reliably with a 4K screen. Use an HD screen or TV if you have similar problems.
+Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/embedded/jetpack and complete the initial setup of username and password using a screen and keyboard connected directly to the jetson. For initial configuration, an HD screen is known to work better than a 4K screen.
 
 # Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To bridge the gap we can add some swap space that will use the SD card as additional memory. Swapping to disk is very slow though, so to free to as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode. You can enable the GUI again later is you wish, but as you will likely access fastai through jupyter notebook, the memory is better spent on space for you deep learning data. 
