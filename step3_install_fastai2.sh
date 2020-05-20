@@ -47,7 +47,7 @@ pip3 install setuptools
 
 # Install MAGMA from source
 # Since fastai requires pytorch to be compiled MAGMA, MAGMA needs to be installed first
-# The authors of MAGMA does not offer binary builds, so it needs to be compiled from source
+# The authors of MAGMA do not offer binary builds, so it needs to be compiled from source
 now=`date`
 echo "Start installation of MAGMA at: $now"
 echo $PW | sudo -k --stdin apt install -y libopenblas-dev
@@ -207,4 +207,7 @@ echo $'set -g terminal-overrides \'xterm*:smcup@:rmcup@\'' >> .tmux.conf # sets 
 JPWHash=$(python3 -c "from notebook.auth import passwd; print(passwd('$JPW'))")
 echo "{\"NotebookApp\":{\"password\":\"$JPWHash\"}}" >> ~/.jupyter/jupyter_notebook_config.json
 
-echo "Now restart the jetson nano, run either ./start_fastai_jupyter_tmux.sh or ./start_fastai_jupyter.sh and connect with your browser to http://(your IP):8888/"
+echo "Installation Completed"
+echo "The system will restart now. When finished, log in and run either ./start_fastai_jupyter.sh or ./start_fastai_jupyter_tmux.sh and connect with your browser to http://(your IP):8888/"
+read -t 5 a
+sudo reboot now
