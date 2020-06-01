@@ -154,16 +154,23 @@ now=`date`
 echo "Starting installation of fastai at:" $now
 
 git clone https://github.com/fastai/fastcore # install fastcore
+pip3 install nbdev
+pip3 install dataclasses
 cd ~/fastcore
-pip3 install -e ".[dev]"
-cd ~/
+# The fastai installation script, for some reason, does not recognise pytorch when installed 
+# without a virtual evironment, so we need to tell it to ignore dependencies, which are installed above
+pip3 install -e ".[dev]" --no-dependencies 
+cd ~/                                      
+
 
 pip3 install fastprogress
 
 git clone https://github.com/fastai/fastai2 # install fastai and patch augment.py
 cd ~/fastai2
 patch -p1 < ~/fastai2_jetson_nano/fastai2_torch_1_5_0.patch
-pip3 install -e ".[dev]"
+# The fastai installation script, for some reason, does not recognise pytorch when installed 
+# without a virtual evironment, so we need to tell it to ignore dependencies, which are installed above
+pip3 install -e ".[dev]" --no-dependencies
 cd ~/
 
 git clone https://github.com/fastai/course-v4 # clone course notebooks
@@ -176,7 +183,6 @@ wget https://nodejs.org/dist/v12.16.2/node-v12.16.2-linux-arm64.tar.xz
 tar -xJf node-v12.16.2-linux-arm64.tar.xz
 echo $PW | sudo -k --stdin cp -R node-v12.16.2-linux-arm64/* /usr/local
 rm -rf node-v12.16.2-linux-arm64*
-pip3 install nbdev
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install @jupyterlab/statusbar
 jupyter lab --generate-config
@@ -204,4 +210,4 @@ echo "{\"NotebookApp\":{\"password\":\"$JPWHash\"}}" >> ~/.jupyter/jupyter_noteb
 echo "Installation Completed"
 echo "The system will restart now. When finished, log in and run either ./start_fastai_jupyter.sh or ./start_fastai_jupyter_tmux.sh and connect with your browser to http://(your IP):8888/"
 read -t 5 a
-sudo reboot now
+echo $PW | sudo reboot now
