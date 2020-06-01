@@ -210,4 +210,4 @@ echo "{\"NotebookApp\":{\"password\":\"$JPWHash\"}}" >> ~/.jupyter/jupyter_noteb
 echo "Installation Completed"
 echo "The system will restart now. When finished, log in and run either ./start_fastai_jupyter.sh or ./start_fastai_jupyter_tmux.sh and connect with your browser to http://(your IP):8888/"
 read -t 5 a
-sudo reboot now
+echo $PW | sudo reboot now
