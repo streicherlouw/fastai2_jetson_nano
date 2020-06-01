@@ -36,12 +36,6 @@ echo $PW | sudo -k --stdin apt -y autoremove
 
 echo $PW | sudo -k --stdin apt install -y python3-pip
 
-# Create a virtual environment and activate it
-echo $PW | sudo -k --stdin apt install -y python3-venv 
-cd ~/
-python3 -m venv ~/python-envs/fastai
-source ~/python-envs/fastai/bin/activate
-
 pip3 install wheel
 pip3 install setuptools
 
