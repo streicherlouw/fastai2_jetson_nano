@@ -39,9 +39,12 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
 
 echo $PW | sudo -k --stdin apt install -y python3-pip
 
-pip3 install --upgrade pip
 pip3 install wheel
-pip3 install --upgrade setuptools
+# Sudo upgrading pip a super ugly workaround, as it breaks pip in some fundemental ways
+# see (https://github.com/pypa/pip/issues/5599), but is the recommended procedure for 
+# building pytorch given by nvidia (https://forums.developer.nvidia.com/t/pytorch-for-jetson-nano-version-1-5-0-now-available/72048)
+# This is fixed again at the end of the setup stript by reinstalling the distribution pip
+echo $PW | sudo -k --stdin pip3 install -U setuptools 
 
 # Install MAGMA from source
 # Since fastai requires pytorch to be compiled MAGMA, MAGMA needs to be installed first
@@ -49,6 +52,7 @@ pip3 install --upgrade setuptools
 now=`date`
 echo "Start installation of MAGMA at: $now"
 echo $PW | sudo -k --stdin apt install -y libopenblas-dev
+echo $PW | sudo -k --stdin apt install -y libopenmpi-dev 
 echo $PW | sudo -k --stdin apt install -y gfortran
 echo $PW | sudo -k --stdin apt install -y cmake
 wget http://icl.utk.edu/projectsfiles/magma/downloads/magma-2.5.3.tar.gz
@@ -121,8 +125,8 @@ BLIS_ARCH="generic" pip3 install spacy --no-binary blis
 pip3 install matplotlib
 
 # Install dependencies for py torch build
-pip3 install scikit-build
-pip3 install ninja
+pip3 install scikit-build --user
+pip3 install ninja --user
 
 # Build torch from source
 now=`date`
@@ -211,7 +215,11 @@ echo $'set -g terminal-overrides \'xterm*:smcup@:rmcup@\'' >> .tmux.conf # sets 
 JPWHash=$(python3 -c "from notebook.auth import passwd; print(passwd('$JPW'))")
 echo "{\"NotebookApp\":{\"password\":\"$JPWHash\"}}" >> ~/.jupyter/jupyter_notebook_config.json
 
+# Reinstalling the distribution pip to undo sudo pip upgrade kludge (https://github.com/pypa/pip/issues/5599)
+echo $PW | sudo -k --stdin python3 -m pip uninstall pip 
+echo $PW | sudo -k --stdin apt install python3-pip --reinstall
+
 echo "Installation Completed"
 echo "The system will restart now. When finished, log in and run either ./start_fastai_jupyter.sh or ./start_fastai_jupyter_tmux.sh and connect with your browser to http://(your IP):8888/"
 read -t 5 a
-echo $PW | sudo reboot now
+echo $PW | sudo -k --stdin reboot now
