@@ -144,7 +144,7 @@ export TORCH_CUDA_ARCH_LIST="5.3"
 export PYTORCH_BUILD_VERSION=1.5.0
 export PYTORCH_BUILD_NUMBER=1
 export BLAS=OpenBLAS
-python3 setup.py bdist_wheel
+USE_OPENCV=1 python3 setup.py bdist_wheel # Throw in OpenCV for good measure, as it is present on the nano 
 cd ~/pytorch/dist
 pip3 install torch-1.5.0-cp36-cp36m-linux_aarch64.whl
 cd ~/
