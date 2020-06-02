@@ -163,7 +163,7 @@ pip3 install dataclasses
 cd ~/fastcore
 # The fastai installation script, for some reason, does not recognise pytorch when installed 
 # without a virtual evironment, so we need to tell it to ignore dependencies, which are installed above
-pip3 install -e ".[dev]" --no-dependencies 
+pip3 install -e ".[dev]"
 cd ~/                                      
 
 
@@ -174,7 +174,7 @@ cd ~/fastai2
 patch -p1 < ~/fastai2_jetson_nano/fastai2_torch_1_5_0.patch
 # The fastai installation script, for some reason, does not recognise pytorch when installed 
 # without a virtual evironment, so we need to tell it to ignore dependencies, which are installed above
-pip3 install -e ".[dev]" --no-dependencies
+pip3 install -e ".[dev]"
 cd ~/
 
 git clone https://github.com/fastai/course-v4 # clone course notebooks
