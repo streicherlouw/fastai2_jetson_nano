@@ -154,7 +154,7 @@ now=`date`
 echo "Starting installation of torchvision at: $now"
 git clone --branch v0.6.0 https://github.com/pytorch/vision torchvision
 cd ~/torchvision
-sudo python3 setup.py install
+echo $PW | sudo -k --stdin python3 setup.py install
 cd ~/
 
 # Clone editable installs of fastcore and fastai2 as well as fastai2 course material
