@@ -25,10 +25,8 @@ if [ $? != 0 ]
     #open a second window(tab)
     tmux new-window -t $SESSIONNAME:2 -n $TAB2
 
-    tmux send-keys -t 0 "source ~/python-envs/fastai/bin/activate" C-m
-
     tmux new-window -t $SESSIONNAME:3 -n $TAB3
-    tmux send-keys -t 0 "source ~/python-envs/fastai/bin/activate;cd course-v4/nbs; jupyter notebook --ip=$ipa" C-m
+    tmux send-keys -t 0 "jupyter notebook --ip=$ipa" C-m
     #tmux send-keys -t 0 "cd course-v4/nbs; jupyter notebook --ip=$ipa" C-m
 
     #default window you want to see when entering the session
