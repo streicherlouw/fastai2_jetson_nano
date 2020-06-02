@@ -34,10 +34,14 @@ echo $PW | sudo -k --stdin apt -y update
 echo $PW | sudo -k --stdin apt -y upgrade
 echo $PW | sudo -k --stdin apt -y autoremove
 
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+
 echo $PW | sudo -k --stdin apt install -y python3-pip
 
+pip3 install --upgrade pip
 pip3 install wheel
-pip3 install setuptools
+pip3 install --upgrade setuptools
 
 # Install MAGMA from source
 # Since fastai requires pytorch to be compiled MAGMA, MAGMA needs to be installed first
