@@ -15,6 +15,10 @@ chmod +x ~/fastai2_jetson_nano/step3_install_fastai2.sh
 chmod +x ~/fastai2_jetson_nano/step3_install_fastai2_background.sh
 chmod +x ~/fastai2_jetson_nano/step4_enable_GUI.sh
 
+# Add directories where pip will store local binaries so that .profile will add them to PATH after reboot
+mkdir ~/.local
+mkdir ~/.local/bin
+
 echo "The system will restart now. When finished, log in and run ./fastai2_jetson_nano/step3_install_fastai2.sh"
 read -t 5 a
 sudo reboot now
