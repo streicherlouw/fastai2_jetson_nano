@@ -126,7 +126,7 @@ pip3 install future
 BLIS_ARCH="generic" pip3 install spacy --no-binary blis
 pip3 install matplotlib
 
-# Install dependencies for py torch build
+# Install dependencies for pytorch build
 pip3 install scikit-build --user
 pip3 install ninja --user
 pip3 install wheel
@@ -134,7 +134,7 @@ pip3 install wheel
 # Build torch from source
 now=`date`
 echo "Start installation of pytorch at: $now"
-git clone --recursive https://github.com/pytorch/pytorch
+git clone --recursive --branch v1.5.0 https://github.com/pytorch/pytorch
 cd ~/pytorch
 wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/44dc4b13095e6eb165f268e3c163f46a4a11110d/pytorch-diff-jetpack-4.4.patch -O pytorch-diff-jetpack-4.4.patch
 patch -p1 < pytorch-diff-jetpack-4.4.patch
@@ -147,7 +147,7 @@ export TORCH_CUDA_ARCH_LIST="5.3"
 export PYTORCH_BUILD_VERSION=1.5.0
 export PYTORCH_BUILD_NUMBER=1
 export BLAS=OpenBLAS
-USE_OPENCV=1 python3 setup.py bdist_wheel # Throw in OpenCV for good measure, as it is present on the nano 
+USE_OPENCV=1 python3 setup.py bdist_wheel # Add OpenCV support, as it is present on the nano 
 cd ~/pytorch/dist
 pip3 install torch-1.5.0-cp36-cp36m-linux_aarch64.whl
 cd ~/
