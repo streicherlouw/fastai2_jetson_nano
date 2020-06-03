@@ -131,8 +131,8 @@ now=`date`
 echo "Start installation of pytorch at: $now"
 git clone --recursive --branch v1.5.0 https://github.com/pytorch/pytorch
 cd ~/pytorch
-wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/44dc4b13095e6eb165f268e3c163f46a4a11110d/pytorch-diff-jetpack-4.4.patch -O pytorch-diff-jetpack-4.4.patch
-patch -p1 < pytorch-diff-jetpack-4.4.patch
+wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/4146335ec8e3824850d6958b3233de46f48ef592/pytorch-1.5-diff-jetpack-4.4.patch -O pytorch-1.5-diff-jetpack-4.4.patch
+patch -p1 < pytorch-1.5-diff-jetpack-4.4.patch
 pip3 install -r requirements.txt
 export USE_NCCL=0
 export USE_DISTRIBUTED=0
