@@ -129,7 +129,7 @@ pip3 install ninja
 # Build torch from source
 now=`date`
 echo "Start installation of pytorch at: $now"
-git clone --recursive https://github.com/pytorch/pytorch
+git clone --recursive --branch v1.5.0 https://github.com/pytorch/pytorch
 cd ~/pytorch
 wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/44dc4b13095e6eb165f268e3c163f46a4a11110d/pytorch-diff-jetpack-4.4.patch -O pytorch-diff-jetpack-4.4.patch
 patch -p1 < pytorch-diff-jetpack-4.4.patch
