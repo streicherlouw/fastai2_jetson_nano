@@ -21,7 +21,7 @@ git clone https://github.com/streicherlouw/fastai2_jetson_nano
 Alternatively, there is an experimental build that does not use a virtual environement available. This build is under active development, and may not build successfully at all times. The experiemntal build can be cloned with:
 ```
 git clone --branch no_virtual_environment https://github.com/streicherlouw/fastai2_jetson_nano
-
+```
 Next, execute the script to enable swap space and disable the GUI.
 ```
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
