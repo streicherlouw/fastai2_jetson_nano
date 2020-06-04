@@ -14,7 +14,7 @@ Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/e
 # Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To make compilation possible, we need to add some swap space that will use a large file on the SD card as a form of temporary RAM. Swapping to disk is very slow though, so to free as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode during start-up. You can re-enable the GUI again later if you wish (using the script step4_enable_GUI.sh), but as you will likely access fastai through jupyter notebook from another computer, it may be advantageous to simply leave the GUI switched off, making the additional RAM available for your deep learning data instead. 
 
-To setup the swap file and temporarily disable the GUI, start by opening a text terminal and download the files you will need for the installation process from this github with the command:
+To setup the swap file and temporarily disable the GUI, start by opening a text terminal and download the files you will need for the installation process from github with the command:
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
