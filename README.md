@@ -18,7 +18,7 @@ To setup the swap file and temporarily disable the GUI, start by opening a text 
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-Alternatively, there is an experimental build that does not use a virtual environement available. This build is under active development, and may not build successfully at all times. The experiemntal build can be cloned with:
+Alternatively, there is an experimental build that does not use a virtual environment available. This build is under active development, and may not build successfully at all times. The experiemntal build can be cloned with:
 ```
 git clone --branch no_virtual_environment https://github.com/streicherlouw/fastai2_jetson_nano
 ```
