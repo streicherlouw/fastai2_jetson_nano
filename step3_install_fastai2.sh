@@ -192,6 +192,7 @@ rm -rf node-v12.16.2-linux-arm64*
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install @jupyterlab/statusbar
 jupyter lab --generate-config
+jupyter nbextension enable --py widgetsnbextension
 
 # Download a small script that divines the IP address, and starts jupyter notebook with the right IP
 cp ~/fastai2_jetson_nano/start_fastai_jupyter.sh start_fastai_jupyter.sh
