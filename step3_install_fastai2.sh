@@ -119,7 +119,7 @@ pip3 install ipykernel
 pip3 install azure-cognitiveservices-search-imagesearch
 pip3 install pillow
 pip3 install numpy
-pip3 install scipy
+pip3 install scipy==1.4.1 # Must upgrade distribution scipy to match numpy
 pip3 install scikit-learn
 pip3 install pyyaml
 pip3 install future
