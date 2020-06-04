@@ -213,6 +213,7 @@ echo $'set -g terminal-overrides \'xterm*:smcup@:rmcup@\'' >> .tmux.conf # sets 
 JPWHash=$(python3 -c "from notebook.auth import passwd; print(passwd('$JPW'))")
 echo "{\"NotebookApp\":{\"password\":\"$JPWHash\"}}" >> ~/.jupyter/jupyter_notebook_config.json
 
+
 # Reinstalling the distribution pip to undo sudo pip upgrade kludge (https://github.com/pypa/pip/issues/5599)
 echo $PW | sudo -k --stdin python3 -m pip uninstall -y pip 
 echo $PW | sudo -k --stdin apt install python3-pip --reinstall
