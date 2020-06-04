@@ -115,7 +115,7 @@ pip3 install ipykernel
 pip3 install azure-cognitiveservices-search-imagesearch
 pip3 install pillow
 pip3 install numpy
-pip3 install scipy
+pip3 install scipy==1.4.1
 pip3 install scikit-learn
 pip3 install pyyaml
 pip3 install future
@@ -186,6 +186,7 @@ pip3 install nbdev
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install @jupyterlab/statusbar
 jupyter lab --generate-config
+jupyter nbextension enable --py widgetsnbextension
 
 # Download a small script that divines the IP address, and starts jupyter notebook with the right IP
 cp ~/fastai2_jetson_nano/start_fastai_jupyter.sh start_fastai_jupyter.sh
