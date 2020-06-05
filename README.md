@@ -26,7 +26,7 @@ need for the installation process from github with the command:
 ```
 git clone --branch no_virtual_environment https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-From here on, there steps for builds with and without a virtual environment are the same. 
+From here on, the steps for builds with and without a virtual environment are the same. 
 
 Next, execute the script to enable swap space and disable the GUI. 
 
