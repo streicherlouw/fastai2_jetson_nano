@@ -14,15 +14,22 @@ Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/e
 # Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To make compilation possible, we need to add some swap space that will use a large file on the SD card as a form of temporary RAM. Swapping to disk is very slow though, so to free as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode during start-up. You can re-enable the GUI again later if you wish (using the script step4_enable_GUI.sh), but as you will likely access fastai through jupyter notebook from another computer, it may be advantageous to simply leave the GUI switched off, making the additional RAM available for your deep learning data instead. 
 
-To setup the swap file and temporarily disable the GUI, start by opening a text terminal and download the files you will need for the installation process from github with the command:
+At this point you need to decide whether you want your fastai installed with or without a virtual environment. The advantage of using a virtual environment is that you can decouple fastai's library dependencies from that of the system, but the disadvantage if that some libraries, like CV2 which you might need for image capture from webcams, would be inaccessible to your jupyter notebooks. If you only want to use fastai to run though the notebooks, choose the virtual environment, if you are building a demo that will need to interact with other hardware, use the script without the virtual environment setup. 
+
+To install fastai **with** a virtual environment, start by opening a text terminal and download the files you will 
+need for the installation process from github with the command:
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-Alternatively, there is an experimental build that does not use a virtual environment available. This build is under active development, and may not build successfully at all times. The experiemntal build can be cloned with:
+To install fastai **without** a virtual environment, start by opening a text terminal and download the files you will 
+need for the installation process from github with the command:
 ```
 git clone --branch no_virtual_environment https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-Next, execute the script to enable swap space and disable the GUI.
+From here on, there steps for builds with and without a virtual environment are the same. 
+
+Next, execute the script to enable swap space and disable the GUI. 
+
 ```
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ./fastai2_jetson_nano/step2_swap_and_textmode.sh
@@ -41,11 +48,11 @@ If you are familiar with nohup, this repository also includes an alternate insta
 ./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
 # Step 4: Start jupyter notebook
-This installation script creates a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. 
+If you chose an installation with a virtual environment, the installation script created a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. 
 
 For convenience, the installation process places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
 
-To start the jypyter notebook server in the terminal that you are logged into type the command below. This script will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes:
+To start the jypyter notebook server in the terminal that you are logged into, type the command below. This script will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes:
 ```
 ./start_fastai_jupyter.sh
 ```
