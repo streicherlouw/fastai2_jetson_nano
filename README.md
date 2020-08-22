@@ -14,22 +14,11 @@ Flash an SD card with Jetpack 4.4 as described on https://developer.nvidia.com/e
 # Step 2: Setup swap space and disable the GUI
 Compiling pytorch uses more memory than the 4GB jetson nano has available. To make compilation possible, we need to add some swap space that will use a large file on the SD card as a form of temporary RAM. Swapping to disk is very slow though, so to free as much memory as we can we also need to switch off the Graphical User Interface by telling the nano to stop booting when it reaches multi-user text mode during start-up. You can re-enable the GUI again later if you wish (using the script step4_enable_GUI.sh), but as you will likely access fastai through jupyter notebook from another computer, it may be advantageous to simply leave the GUI switched off, making the additional RAM available for your deep learning data instead. 
 
-At this point you need to decide whether you want your fastai installed with or without a virtual environment. The advantage of using a virtual environment is that you can decouple fastai's library dependencies from that of the system, but the disadvantage if that some libraries, like CV2 which you might need for image capture from webcams, would be inaccessible to your jupyter notebooks. If you only want to use fastai to run though the notebooks, choose the virtual environment, if you are building a demo that will need to interact with other hardware, use the script without the virtual environment setup. 
-
-To install fastai **with** a virtual environment, start by opening a text terminal and download the files you will 
-need for the installation process from github with the command:
+Start by opening a text terminal and download the files you will need for the installation process from github with the command:
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-To install fastai **without** a virtual environment, start by opening a text terminal and download the files you will 
-need for the installation process from github with the command:
-```
-git clone --branch no_virtual_environment https://github.com/streicherlouw/fastai2_jetson_nano
-```
-From here on, the steps for builds with and without a virtual environment are the same. 
-
 Next, execute the script to enable swap space and disable the GUI. 
-
 ```
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ./fastai2_jetson_nano/step2_swap_and_textmode.sh
@@ -39,16 +28,27 @@ The nano should now reboot and present you with a text terminal to log into.
 # Step 3: Install dependencies and compile
 For the next part, you will either need to login to the nano by using ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time (12 to 16 hours) that the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the session will end and the installation will stop midway.
 
-Once logged in from a reliable connection, start the installation by typing: 
+At this point you also need to decide whether you want fastai installed with or without a virtual environment. The advantage of using a virtual environment is that you can decouple fastai's library dependencies from that of the system, but the disadvantage if that some libraries, like CV2 which you might need for image capture from webcams, and which are pre-installed in Jetpack, would be inaccessible to your jupyter notebooks in the virtual environment. If you only want to use fastai to run though the notebooks, choose the virtual environment, if you are building a demo that will need to interact with other hardware, use the script without the virtual environment setup. 
+
+To install fastai **with** a virtual environment, start the installation by typing: 
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
-If you are familiar with nohup, this repository also includes an alternate install script that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this method also has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, use the following command instead of the one above:
+
+To install fastai **without** a virtual environment, start the installation by typing: 
+```
+./fastai2_jetson_nano/step3_install_fastai2_no_virtualenv.sh
+```
+If you are familiar with nohup, this repository also includes a set of helper scripts that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this background method has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, start the installation process with either of the commands below:
 ```
 ./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
+or
+```
+./fastai2_jetson_nano/step3_install_fastai2_background_no_virtualenv.sh
+```
 # Step 4: Start jupyter notebook
-If you chose an installation with a virtual environment, the installation script created a virtual environment called "fastai" using the python's venv function. This means that you will need to activate the virtual environment before using fastai in either jupyter notebook or python. 
+
 
 For convenience, the installation process places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
 
@@ -65,7 +65,7 @@ Start jupyter notebook in tmux with the command:
 ```
 ./start_fastai_jupyter_tmux.sh
 ```
-If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, you can manually activate the "fastai" virtual environment with the following command:
+If you chose an installation with a virtual environment, the installation script created a virtual environment called "fastai" using the python's venv function. This means that you  need to activate the virtual environment before using fastai in either jupyter notebook or python.  If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, you can manually activate the "fastai" virtual environment with the following command:
 ```
 source ~/python-envs/fastai/bin/activate
 ```
