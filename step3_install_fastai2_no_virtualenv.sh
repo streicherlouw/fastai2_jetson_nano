@@ -184,7 +184,7 @@ jupyter lab --generate-config
 jupyter nbextension enable --py widgetsnbextension
 
 # Download a small script that divines the IP address, and starts jupyter notebook with the right IP
-cp ~/fastai2_jetson_nano/start_fastai_jupyter.sh start_fastai_jupyter.sh
+cp ~/fastai2_jetson_nano/startup_scripts/start_fastai_jupyter_no_virtualenv.sh start_fastai_jupyter.sh
 chmod a+x start_fastai_jupyter.sh
 
 # Starting jpyter using the script above will mean your jupyter instance is killed when you log out or your ssh connection drops
@@ -197,7 +197,7 @@ now=`date`
 echo "Starting installation of tmux at: $now"
 echo $PW | sudo -k --stdin apt install tmux
 echo $PW | sudo -k --stdin -H pip3 install -U jetson-stats
-cp ~/fastai2_jetson_nano/start_fastai_jupyter_tmux.sh start_fastai_jupyter_tmux.sh
+cp ~/fastai2_jetson_nano/startup_scripts/start_fastai_jupyter_tmux_no_virtualenv.sh start_fastai_jupyter_tmux.sh
 chmod a+x start_fastai_jupyter_tmux.sh
 echo $'set -g terminal-overrides \'xterm*:smcup@:rmcup@\'' >> .tmux.conf # sets up same mouse scolling in tmux
 JPWHash=$(python3 -c "from notebook.auth import passwd; print(passwd('$JPW'))")
