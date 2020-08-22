@@ -20,7 +20,7 @@ if [ $? != 0 ]
     #detaching is needed as in the last line will attach to it
     tmux new-session -s $SESSIONNAME -n $TAB1 -d
 
-    tmux send-keys -t 0 "sudo jtop" C-m
+    tmux send-keys -t 0 "jtop" C-m
 
     #open a second window(tab)
     tmux new-window -t $SESSIONNAME:2 -n $TAB2
