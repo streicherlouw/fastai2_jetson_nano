@@ -161,6 +161,7 @@ now=`date`
 echo "Starting installation of fastai at:" $now
 
 pip3 install fastai
+pip3 install nbdev
 cd ~/
 
 git clone https://github.com/fastai/course-v4 # clone course notebooks
@@ -173,7 +174,6 @@ wget https://nodejs.org/dist/v12.16.2/node-v12.16.2-linux-arm64.tar.xz
 tar -xJf node-v12.16.2-linux-arm64.tar.xz
 echo $PW | sudo -k --stdin cp -R node-v12.16.2-linux-arm64/* /usr/local
 rm -rf node-v12.16.2-linux-arm64*
-pip3 install nbdev
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install @jupyterlab/statusbar
 jupyter lab --generate-config
