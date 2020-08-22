@@ -41,11 +41,11 @@ To install fastai **without** a virtual environment, start the installation by t
 ```
 If you are familiar with nohup, this repository also includes a set of helper scripts that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this background method has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, start the installation process with either of the commands below:
 ```
-./fastai2_jetson_nano/step3_install_fastai2_background.sh
+./fastai2_jetson_nano/background/step3_install_fastai2_background.sh
 ```
 or
 ```
-./fastai2_jetson_nano/step3_install_fastai2_background_no_virtualenv.sh
+./fastai2_jetson_nano/background/step3_install_fastai2_background_no_virtualenv.sh
 ```
 # Step 4: Start jupyter notebook
 
