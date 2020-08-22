@@ -23,7 +23,15 @@ Next, execute the script to enable swap space and disable the GUI.
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ./fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
-The nano should now reboot and present you with a text terminal to log into.
+The nano should now reboot and present you with a text terminal to log into. 
+
+Note that if you are using a wifi card with your jetson nano, you may need to manually connect the wifi after disabling the GUI. This can be done with the following commands:
+
+```
+nmcli r wifi on
+nmcli d wifi list
+nmcli d wifi connect [SSID] password [PASSWORD]
+```
 
 # Step 3: Install dependencies and compile
 For the next part, you will either need to login to the nano by using ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time (12 to 16 hours) that the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the session will end and the installation will stop midway.
