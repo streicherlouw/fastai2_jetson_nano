@@ -103,7 +103,6 @@ echo "Start installation of various library dependencies with pip at: $now"
 # Install dependencies for scipy and scikit-learn, torch, torchvision, jupyter notebook and fastai
 pip3 install cython
 pip3 install kiwisolver
-pip3 install freetype-py
 pip3 install pypng
 pip3 install dataclasses bottleneck
 pip3 install jupyter jupyterlab
@@ -117,6 +116,7 @@ pip3 install pillow
 pip3 install numpy
 pip3 install scipy==1.4.1
 pip3 install scikit-learn
+pip3 install freetype-py
 pip3 install pyyaml
 pip3 install future
 BLIS_ARCH="generic" pip3 install spacy --no-binary blis
@@ -129,47 +129,38 @@ pip3 install ninja
 # Build torch from source
 now=`date`
 echo "Start installation of pytorch at: $now"
-git clone --recursive --branch v1.5.0 https://github.com/pytorch/pytorch
+git clone --recursive --branch v1.6.0 https://github.com/pytorch/pytorch
 cd ~/pytorch
-wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/4146335ec8e3824850d6958b3233de46f48ef592/pytorch-1.5-diff-jetpack-4.4.patch -O pytorch-1.5-diff-jetpack-4.4.patch
-patch -p1 < pytorch-1.5-diff-jetpack-4.4.patch
+wget https://gist.githubusercontent.com/dusty-nv/ce51796085178e1f38e3c6a1663a93a1/raw/d7d535f4f8812042c740f3694f6b3107fa3eb59a/pytorch-1.6-rc2-jetpack-4.4-GA.patch -O pytorch-1.6-rc2-jetpack-4.4-GA.patch
+patch -p1 < pytorch-1.6-rc2-jetpack-4.4-GA.patch
 pip3 install -r requirements.txt
 export USE_NCCL=0
 export USE_DISTRIBUTED=0
 export USE_QNNPACK=0
 export USE_PYTORCH_QNNPACK=0
-export TORCH_CUDA_ARCH_LIST="5.3"
-export PYTORCH_BUILD_VERSION=1.5.0
+export TORCH_CUDA_ARCH_LIST="5.3;6.2;7.2"
+export PYTORCH_BUILD_VERSION=1.6.0
 export PYTORCH_BUILD_NUMBER=1
 export BLAS=OpenBLAS
-python3 setup.py bdist_wheel
+USE_OPENCV=1 python3 setup.py bdist_wheel # Add OpenCV support, as it is present on the nano
 cd ~/pytorch/dist
-pip3 install torch-1.5.0-cp36-cp36m-linux_aarch64.whl
+pip3 install torch-1.6.0-cp36-cp36m-linux_aarch64.whl
 cd ~/
 
 # Build torchvision from source
 now=`date`
 echo "Starting installation of torchvision at: $now"
-git clone --branch v0.6.0 https://github.com/pytorch/vision torchvision
+git clone --branch v0.7.0 https://github.com/pytorch/vision torchvision
 cd ~/torchvision
+export BUILD_VERSION=0.7.0
 python3 setup.py install
 cd ~/
 
-# Clone editable installs of fastcore and fastai2 as well as fastai2 course material
+# Install fastai2 as well as fastai2 course material
 now=`date`
 echo "Starting installation of fastai at:" $now
 
-git clone https://github.com/fastai/fastcore # install fastcore
-cd ~/fastcore
-pip3 install -e ".[dev]"
-cd ~/
-
-pip3 install fastprogress
-
-git clone https://github.com/fastai/fastai2 # install fastai and patch augment.py
-cd ~/fastai2
-patch -p1 < ~/fastai2_jetson_nano/fastai2_torch_1_5_0.patch
-pip3 install -e ".[dev]"
+pip3 install fastai
 cd ~/
 
 git clone https://github.com/fastai/course-v4 # clone course notebooks
