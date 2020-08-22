@@ -50,22 +50,22 @@ or
 # Step 4: Start jupyter notebook
 
 
-For convenience, the installation process places two start-up scripts in the user's home directory that automatically activates the virtual environment before starting jupyter notebook with the jetson nano's IP address.
+For convenience, the installation process places two start-up scripts in the user's home directory that automatically starts jupyter notebook with the jetson nano's IP address.
 
 To start the jypyter notebook server in the terminal that you are logged into, type the command below. This script will run jupyter notebook for as long as the terminal session remains open, but exit when the terminal session closes:
 ```
 ./start_fastai_jupyter.sh
 ```
-If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 waiting for the sudo password to start [jtop (an attractive resource manager for the jetson nano, seen below)](https://github.com/rbonghi/jetson_stats), Session 2 containing a Linux terminal with the "fastai" virtual environment activated, and Session 3 running jupyter notebook. To switch between sessions in tmux, press Control-b followed by 0,2 or 3. Control-b followed by x closes a session.
+If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 running [jtop (an attractive resource manager for the jetson nano, seen below)](https://github.com/rbonghi/jetson_stats), Session 2 containing a Linux terminal with the "fastai" virtual environment activated if chosen during installation, and Session 3 running jupyter notebook. To switch between sessions in tmux, press Control-b followed by 0,2 or 3. Control-b followed by x closes a session.
 
 <img src="https://raw.githubusercontent.com/wiki/rbonghi/jetson_stats/images/jtop.gif" width="400">
 
-Start jupyter notebook in tmux with the command:
+To start jupyter notebook in tmux, type with the command:
 
 ```
 ./start_fastai_jupyter_tmux.sh
 ```
-If you chose an installation with a virtual environment, the installation script created a virtual environment called "fastai" using the python's venv function. This means that you  need to activate the virtual environment before using fastai in either jupyter notebook or python.  If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, you can manually activate the "fastai" virtual environment with the following command:
+If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, but you chose an installation with a virtual environment, you can manually activate the "fastai" virtual environment with the following command:
 ```
 source ~/python-envs/fastai/bin/activate
 ```
