@@ -18,7 +18,7 @@ Start by opening a text terminal and download the files you will need for the in
 ```
 git clone https://github.com/streicherlouw/fastai2_jetson_nano
 ```
-Next, execute the script to enable swap space and disable the GUI. 
+Next, execute the script to enable swap space, disable the GUI, and set the excution flag on the rest of the installation and startup scripts. 
 ```
 chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ./fastai2_jetson_nano/step2_swap_and_textmode.sh
