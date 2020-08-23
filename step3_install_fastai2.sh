@@ -107,7 +107,7 @@ pip3 install pypng
 pip3 install dataclasses bottleneck
 pip3 install jupyter jupyterlab
 pip3 install pynvx
-pip3 install pandas
+pip3 install pandas==1.1.1
 pip3 install fire
 pip3 install graphviz
 pip3 install ipykernel
