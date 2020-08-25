@@ -50,16 +50,13 @@ If you would like jupyter notebook to continue running after you log out, you ca
 
 <img src="https://raw.githubusercontent.com/wiki/rbonghi/jetson_stats/images/jtop.gif" width="400">
 
-To start jupyter notebook in tmux, type with the command:
+To start jupyter notebook in tmux, type  the command:
 
 ```
 ./start_fastai_jupyter_tmux.sh
 ```
-If you are not using the start-up scripts above, for example if you want to run a fastai python script from the command line, but you chose an installation with a virtual environment, you can manually activate the "fastai" virtual environment with the following command:
-```
-source ~/python-envs/fastai/bin/activate
-```
-If you do not intend to work with large datasets in fastai, you may also also re-enable the graphical user interface with the command:
+
+If you do not intend to work with large datasets in fastai, you may also also now re-enable the graphical user interface with the command:
 ```
 ./fastai2_jetson_nano/step4_enable_GUI.sh
 ```
