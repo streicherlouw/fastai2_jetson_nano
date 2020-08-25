@@ -25,36 +25,18 @@ chmod +x fastai2_jetson_nano/step2_swap_and_textmode.sh
 ```
 The nano should now reboot and present you with a text terminal to log into. 
 
-Note that if you are using a wifi card with your jetson nano, you may need to manually connect the wifi after disabling the GUI. This can be done with the following commands:
-
-```
-nmcli r wifi on
-nmcli d wifi list
-nmcli d wifi connect [SSID] password [PASSWORD]
-```
-
 # Step 3: Install dependencies and compile
 For the next part, you will either need to login to the nano by using ssh or the local console terminal. If using ssh, make sure the connection remains open for the entire time (12 to 16 hours) that the script is running. If your terminal disconnects (for example because the computer you are connecting from goes to sleep) the session will end and the installation will stop midway.
 
-At this point you also need to decide whether you want fastai installed with or without a virtual environment. The advantage of using a virtual environment is that you can decouple fastai's library dependencies from that of the system, but the disadvantage if that some libraries, like CV2 which you might need for image capture from webcams, and which are pre-installed in Jetpack, would be inaccessible to your jupyter notebooks in the virtual environment. If you only want to use fastai to work through the fastai notebooks, choose the virtual environment, if you are building a demo that will need to interact with other hardware, use the script without the virtual environment setup. 
-
-To install fastai **with** a virtual environment, start the installation by typing: 
+To start the fastai installation type: 
 ```
 ./fastai2_jetson_nano/step3_install_fastai2.sh
 ```
-
-To install fastai **without** a virtual environment, start the installation by typing: 
-```
-./fastai2_jetson_nano/step3_install_fastai2_no_virtualenv.sh
-```
-If you are familiar with nohup, this repository also includes a set of helper scripts that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this background method has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, choose either of the commands below, depending on whether you want fastai set up in a virtual environment or not:
+If you are familiar with nohup, this repository also includes a helper script that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this background method has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, type:
 ```
 ./fastai2_jetson_nano/background/step3_install_fastai2_background.sh
 ```
-or
-```
-./fastai2_jetson_nano/background/step3_install_fastai2_background_no_virtualenv.sh
-```
+
 # Step 4: Start jupyter notebook
 
 
@@ -64,7 +46,7 @@ To start the jypyter notebook server in the terminal that you are logged into, t
 ```
 ./start_fastai_jupyter.sh
 ```
-If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 running [jtop (an attractive resource manager for the jetson nano, seen below)](https://github.com/rbonghi/jetson_stats), Session 2 containing a Linux terminal with the "fastai" virtual environment activated if chosen during installation, and Session 3 running jupyter notebook. To switch between sessions in tmux, press Control-b followed by 0,2 or 3. Control-b followed by x closes a session.
+If you would like jupyter notebook to continue running after you log out, you can use tmux to host a virtual terminal session. The setup of tmux included in this package (based on [Jeffrey Antony's](https://github.com/jeffreyantony) [tmux repository](https://github.com/jeffreyantony/tmux-fastai/blob/master/tmux-fastai.sh)) creates three terminal sessions: Session 0 running [jtop (an attractive resource manager for the jetson nano, seen below)](https://github.com/rbonghi/jetson_stats), Session 2 containing a Linux terminal, and Session 3 running jupyter notebook. To switch between sessions in tmux, press Control-b followed by 0,2 or 3. Control-b followed by x closes a session.
 
 <img src="https://raw.githubusercontent.com/wiki/rbonghi/jetson_stats/images/jtop.gif" width="400">
 
@@ -82,7 +64,7 @@ If you do not intend to work with large datasets in fastai, you may also also re
 ./fastai2_jetson_nano/step4_enable_GUI.sh
 ```
 # Step 5: Batch responsibly
-The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 16 or 32 when you call the dataloader as follows:
+The jetson nano has only 4GB of RAM shared between the operating system and the GPU. When training on large datasets, for example the pets dataset in [05_pet_breeds.ipynb](https://github.com/fastai/course-v4/blob/master/nbs/05_pet_breeds.ipynb), make sure to set the batch size to 8 or 16 when you call the dataloader as follows:
 ```
 dls = pets.dataloaders(path/"images",bs=16)
 ```
