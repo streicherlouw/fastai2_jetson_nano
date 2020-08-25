@@ -7,6 +7,6 @@ echo "Please enter your desired jupyter notebook password:"
 read -sp 'Password: ' JPW
 echo
 cd ~/
-nohup ./fastai2_jetson_nano/step3_install_fastai2_no_virtualenv.sh $PW $JPW &
+nohup ./fastai2_jetson_nano/step3_install_fastai2.sh $PW $JPW &
 sleep 2
 tail -f ~/nohup.out
