@@ -34,7 +34,7 @@ To start the fastai installation type:
 ```
 If you are familiar with nohup, this repository also includes a helper script that starts the installation process in the background so that an interrupted terminal session would not stop the build. Using this background method has the added benefit of preserving the build log in a file so that it may be reviewed later. To start the installation process in the background, type:
 ```
-./fastai2_jetson_nano/background/step3_install_fastai2_background.sh
+./fastai2_jetson_nano/step3_install_fastai2_background.sh
 ```
 
 # Step 4: Start jupyter notebook
