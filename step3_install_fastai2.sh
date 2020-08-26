@@ -161,6 +161,21 @@ export BUILD_VERSION=0.7.0
 python3 setup.py install --user
 cd ~/
 
+# Build sentencepiece from source
+now=`date`
+echo "Starting installation of sentencepiece at: $now"
+git clone https://github.com/google/sentencepiece
+cd ~/sentencepiece
+mkdir build
+cd build/
+cmake ..
+make -j $(nproc)
+echo $PW | sudo -k --stdin make install
+echo $PW | sudo -k --stdin ldconfig -v
+cd ~/sentencepiece/python
+python3 setup.py build
+echo $PW | sudo -k --stdin python3 setup.py install
+
 # Install fastai2 as well as fastai2 course material
 now=`date`
 echo "Starting installation of fastai at:" $now
